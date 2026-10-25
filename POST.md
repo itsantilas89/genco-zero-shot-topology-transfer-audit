@@ -69,13 +69,13 @@ However, the paper does not report the following, and the released checkpoints l
 
 ### A1. Transfer matrix
 
-![Transfer matrix](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer/main/figures/fig1_transfer_matrix.png)
+![Transfer matrix](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer-audit/main/figures/fig1_transfer_matrix.png)
 
 In-distribution the median relative residual is 0.0013 (range 1.2e-4 to 0.11); zero-shot it is **0.94** (IQR 0.46 to 2.5), roughly 700 times higher. At that level the mean power mismatch per bus is of the order of the load itself. The median GENCO / DC-PF residual ratio is **13.8**, and 4 of 225 zero-shot runs have a residual below DC-PF, all on the 14-bus target. Sources of 118 buses or fewer have a median zero-shot residual of 2.8 against 0.64 for sources of 500 buses or more, and transfer from small grids to case500 is the worst case (3 to 11).
 
 ### A2. Topology overfitting (H1)
 
-![In-distribution vs zero-shot](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer/main/figures/fig2_h1_id_vs_zero_shot.png)
+![In-distribution vs zero-shot](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer-audit/main/figures/fig2_h1_id_vs_zero_shot.png)
 
 Across the 53 single-grid checkpoints, the Spearman correlation between in-distribution and mean zero-shot relative residual is **ρ = -0.53** (95 % CI -0.71 to -0.28 resampling checkpoints; permutation p < 0.001): checkpoints with lower in-distribution error tend to transfer worse. The evidence is weaker than that interval suggests:
 
@@ -87,7 +87,7 @@ We therefore read this as a negative association that is consistent with H1 but 
 
 ### A3. Source diversity and scale (H2)
 
-![Source size and subgrid model](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer/main/figures/fig3_source_scale_and_subgrid.png)
+![Source size and subgrid model](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer-audit/main/figures/fig3_source_scale_and_subgrid.png)
 
 The subgrid-pretrained model (100 topologies) has a median zero-shot residual of **0.50** over its five target runs (mean **0.41**), against 0.98 for the single-grid runs pooled. Against the Base single-grid checkpoints of equal size it does better in 18 of 20 (source, target) pairs (these pairs are not independent) and on 4 of 5 targets against the best single source; the exception is case14, where the case30 source is better. Its Vm violation rate is 0.4 % (median) against 13 % for single-grid checkpoints and 2.9 % in the ground truth. Its residual is still 3 to 9 times the DC-PF residual.
 
@@ -95,13 +95,13 @@ This does not separate diversity from scale. Per checkpoint, averaging the resid
 
 ### A4. Normaliser recalibration (H3)
 
-![Recalibration gain](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer/main/figures/fig4_recalibration_gain.png)
+![Recalibration gain](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer-audit/main/figures/fig4_recalibration_gain.png)
 
 Replacing the source statistics (A) by target-input statistics (B) does **not** help zero-shot: the median log2 gain is 0.00 (95 % CI -0.02 to +0.02) and 49 % of the 220 pairs improve (CI 42 % to 55 %; checkpoint-clustered bootstrap). On the checkpoint's own grid, B is about 2,000 times worse than A (median log2 gain -11), while the full refit C matches A. On the subgrid model B and C give similar residuals (0.50 and 0.52 median). So this particular input-only recalibration is not a faithful stand-in for the original statistics. A possible explanation is that it leaves Pg and Qg out of the `baseMVA` fit, which the models may depend on, and that zero-shot errors are too large for the scale shift to matter; we did not test either. We read this as: H3 is not supported for this variant, and the data say nothing about other recalibrations.
 
 ### A5. Safety
 
-![Safety](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer/main/figures/fig5_safety.png)
+![Safety](https://raw.githubusercontent.com/itsantilas89/genco-zero-shot-topology-transfer-audit/main/figures/fig5_safety.png)
 
 The median zero-shot Vm violation rate is 13 % for single-grid checkpoints against 2.9 % in the ground truth, with some runs above 80 %. 33 of 225 runs combine a below-median residual (or one below DC-PF) with a collapsed calibration slope (|slope| < 0.3 for Vm or Va). Such a pattern can indicate near-mean predictions, so a low residual alone was not a reliable indicator in these runs.
 
@@ -125,7 +125,7 @@ These follow from the zero-shot results only; we did not test fine-tuning.
 
 ## References
 
-- Code, configs, results and figures: https://github.com/itsantilas89/genco-zero-shot-topology-transfer (`results/results.csv`, `results/summary.json`, `figures/`)
+- Code, configs, results and figures: https://github.com/itsantilas89/genco-zero-shot-topology-transfer-audit (`results/results.csv`, `results/summary.json`, `figures/`)
 - Reproduction: `scripts/setup_remote.sh` then `scripts/run_all.sh`; commit hashes and dataset revisions in `results/provenance.json`
 - Checkpoints: [gridfm/genco-pf-datakit](https://huggingface.co/gridfm/genco-pf-datakit), [gridfm/genco-pf-transfer](https://huggingface.co/gridfm/genco-pf-transfer)
 - [GENCO](https://arxiv.org/pdf/2608.09921) · [MxGPS](https://arxiv.org/pdf/2607.13763)
