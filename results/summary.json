@@ -1,0 +1,63 @@
+{
+  "n_runs": 585,
+  "n_zero_shot_runs": 225,
+  "H1": {
+    "n_checkpoints": 53,
+    "rho_id_vs_zero_shot_residual": {
+      "spearman_rho": -0.5297532656023222,
+      "ci95_lo": -0.7067021886496316,
+      "ci95_hi": -0.28492548038772086,
+      "permutation_p": 0.0
+    },
+    "rho_id_vs_degradation_ratio": {
+      "spearman_rho": -0.9448476052249638,
+      "ci95_lo": -0.9667490598738419,
+      "ci95_hi": -0.8810617670362737,
+      "permutation_p": 0.0082
+    },
+    "note": "H1 (topology overfitting) predicts that low in-distribution (ID) residual goes with large degradation. rho(ID, degradation ratio) is negative under H1 but is also negative by construction (ID is the ratio's denominator): judge it by its permutation_p, which uses that mechanical effect as the null. rho(ID, zero-shot residual) > 0 (CI above 0) would mean better ID accuracy goes with better transfer, i.e. against H1.",
+    "grid_clustered_bootstrap": {
+      "n_source_grids": 7,
+      "rho": -0.5297532656023222,
+      "ci95_lo": -0.7476522265980007,
+      "ci95_hi": 0.01478560867422376,
+      "grid_level_rho_of_medians": -0.642857142857143,
+      "leave_one_grid_out_rho_min": -0.640169133192389,
+      "leave_one_grid_out_rho_max": -0.32924594785059896
+    }
+  },
+  "H2": {
+    "targets": 5,
+    "mean_frac_single_sources_beaten_vs_A": 0.9,
+    "mean_frac_single_sources_beaten_vs_B": 0.9,
+    "targets_where_subgrid_beats_best_single_A": 4,
+    "note": "one subgrid checkpoint, so no seed uncertainty on its side"
+  },
+  "H3": {
+    "zero_shot": {
+      "n_pairs": 220,
+      "n_checkpoints": 53,
+      "frac_improved": 0.4863636363636364,
+      "frac_ci_lo": 0.421506909076152,
+      "frac_ci_hi": 0.5475113122171946,
+      "median_log2_gain_A_over_B": -0.0020330675182148577,
+      "log2_ci_lo": -0.018595059391368646,
+      "log2_ci_hi": 0.024048507028255565
+    },
+    "diagonal": {
+      "n_pairs": 45,
+      "n_checkpoints": 45,
+      "frac_improved": 0.0,
+      "frac_ci_lo": 0.0,
+      "frac_ci_hi": 0.0,
+      "median_log2_gain_A_over_B": -11.031977560533083,
+      "log2_ci_lo": -11.63680359387803,
+      "log2_ci_hi": -9.85620154610486
+    }
+  },
+  "A5": {
+    "n_flagged": 33,
+    "of": 225,
+    "median_violation_excess": 0.08709147994862282
+  }
+}

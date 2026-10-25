@@ -1,0 +1,10 @@
+model,mae_vm_pu,bvr_percent,origin
+GCN,0.0128,0.0,"published (MxGPS Table IV, zero-shot on 14-bus)"
+GAT,0.0164,12.64,"published (MxGPS Table IV, zero-shot on 14-bus)"
+GPS,0.0266,0.0,"published (MxGPS Table IV, zero-shot on 14-bus)"
+GNS,0.0158,10.91,"published (MxGPS Table IV, zero-shot on 14-bus)"
+GNS-kit,0.0195,0.3,"published (MxGPS Table IV, zero-shot on 14-bus)"
+MxGPS-ind,0.0383,0.0,"published (MxGPS Table IV, zero-shot on 14-bus)"
+MxGPS-cross,0.035,0.0,"published (MxGPS Table IV, zero-shot on 14-bus)"
+GENCO single-grid (mean over checkpoints),0.01776224191152401,6.3652256834074965,"this audit, case14_ieee, n=44 checkpoints"
+GENCO subgrid-pretrained,0.0040958183817565,0.07849293563578999,"this audit, case14_ieee, n=1 checkpoints"

@@ -1,0 +1,17 @@
+# environment and third-party code (re-created by scripts/setup_remote.sh)
+.venv/
+gridfm-graphkit/
+__pycache__/
+*.pyc
+.vscode/
+
+# downloads: weights and datasets are never redistributed, see README
+genco-pf-datakit/
+genco-pf-transfer/
+data/
+
+# scratch
+runs/
+mlruns/
+*.log
+results/per_run/

@@ -1,0 +1,65 @@
+{
+  "graphkit_commit": "f104900245cba26d1380037eea562cf633a97484",
+  "audit_repo_commit": "7d2d278b2524e245f8290e90af6f7d0756f8def9",
+  "python": "3.10.22",
+  "platform": "Linux-6.8.0-146-generic-x86_64-with-glibc2.39",
+  "gpu": "NVIDIA L40S, 580.178.04, 46068 MiB",
+  "cuda": "| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |",
+  "checkpoint_revisions": {
+    "gridfm/genco-pf-datakit": "f5eb20ee798b9847b723c91874af85d32a96a468",
+    "gridfm/genco-pf-transfer": "45bcde49af8e0767074790e48af8e7babf06f0c0"
+  },
+  "datasets": [
+    {
+      "grid": "case10000_goc",
+      "hf_repo": "gridfm/pf_small_case10000_goc",
+      "revision": "b92bb32d76e26fedb537e59991ca6028c907ae66",
+      "partitions": 1,
+      "n_scenarios": 200
+    },
+    {
+      "grid": "case118_ieee",
+      "hf_repo": "gridfm/pf_small_case118_ieee",
+      "revision": "3f5a6e266f759be15e3777bf4d70133ff40e6fa7",
+      "partitions": 100,
+      "n_scenarios": 20000
+    },
+    {
+      "grid": "case14_ieee",
+      "hf_repo": "gridfm/pf_small_case14_ieee",
+      "revision": "5669b8cec913ce1a1ef174d0283c6f6949135455",
+      "partitions": 100,
+      "n_scenarios": 20000
+    },
+    {
+      "grid": "case2000_goc",
+      "hf_repo": "gridfm/pf_small_case2000_goc",
+      "revision": "644cfbeb148529b563d477cf3c71e6cf6113140c",
+      "partitions": 1,
+      "n_scenarios": 200
+    },
+    {
+      "grid": "case30_ieee",
+      "hf_repo": "gridfm/pf_small_case30_ieee",
+      "revision": "049e705d291d70f389145f309d0d9a8a89eaa52e",
+      "partitions": 100,
+      "n_scenarios": 20000
+    },
+    {
+      "grid": "case500_goc",
+      "hf_repo": "gridfm/pf_small_case500_goc",
+      "revision": "64fea9214cc79775cb14a575bdfe9d39a8abf4f8",
+      "partitions": 50,
+      "n_scenarios": 10000
+    },
+    {
+      "grid": "case57_ieee",
+      "hf_repo": "gridfm/pf_small_case57_ieee",
+      "revision": "9bbef10b1100db9b3cd0ef4bc1d36b6b005fb649",
+      "partitions": 100,
+      "n_scenarios": 20000
+    }
+  ],
+  "torch": "2.11.0+cu130",
+  "torch_cuda": "13.0"
+}

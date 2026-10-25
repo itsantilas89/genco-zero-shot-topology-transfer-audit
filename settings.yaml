@@ -1,0 +1,49 @@
+# Central settings for the audit. Every script reads this file.
+
+graphkit:
+  repo: https://github.com/gridfm/gridfm-graphkit.git
+  commit: f104900
+  fallback_branch: genco-paper-repro
+
+hf:
+  checkpoints_repo: gridfm/genco-pf-datakit
+  pretraining_repo: gridfm/genco-pf-transfer
+  pretraining_subdir: pretraining
+
+# Target grids. `partitions` = number of datakit scenario partitions (200 scenarios
+# each) downloaded from `hf_repo`, taken from partition 0 upwards so scenario IDs stay
+# contiguous from 0. null downloads the full dataset. data.scenarios in every generated
+# config is the number of scenarios actually present (partitions * 200).
+# The evaluation set per target is the 10 % test split of those scenarios.
+targets:
+  case14_ieee:  {hf_repo: gridfm/pf_small_case14_ieee,  partitions: 100}
+  case30_ieee:  {hf_repo: gridfm/pf_small_case30_ieee,  partitions: 100}
+  case57_ieee:  {hf_repo: gridfm/pf_small_case57_ieee,  partitions: 100}
+  case118_ieee: {hf_repo: gridfm/pf_small_case118_ieee, partitions: 100}
+  case500_goc:  {hf_repo: gridfm/pf_small_case500_goc,  partitions: 50}
+
+# Source-only grids: a single partition of bus_data is fetched just to compute the mean
+# bus apparent power that normalises their in-distribution residual (analyses A2/A3).
+scale_only:
+  case2000_goc:  {hf_repo: gridfm/pf_small_case2000_goc,  partitions: 1}
+  case10000_goc: {hf_repo: gridfm/pf_small_case10000_goc, partitions: 1}
+
+# Split seed used for every off-diagonal pair, so all checkpoints see the identical test
+# set on a given target. Diagonal pairs (target == source grid) keep the source seed.
+eval_seed: 0
+
+# Tables downloaded per target. runtime_data is required by --compute_dc_ac_metrics.
+tables: [bus_data, gen_data, branch_data, runtime_data]
+optional_tables: [y_bus_data]   # only needed for the hybrid warm-start extension
+
+# Reference reproduction gate (README section 4).
+gate:
+  ckpt_id: case118_ieee__small__seed0
+  target: case118_ieee
+  expected_active_res_MW: 0.125
+  expected_reactive_res_MVar: 0.014
+  rel_tolerance: 0.5     # partition subset: accept the same range, not the same value
+
+run:
+  num_workers: 4          # dataloader workers per evaluation process
+  exp_name: zs_audit

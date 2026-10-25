@@ -1,0 +1,4 @@
+setup 2026-10-21T11:39:35Z
+NVIDIA L40S, 580.178.04, 46068 MiB
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
+Python 3.10.22

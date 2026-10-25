@@ -1,0 +1,8 @@
+model,task,zero_shot_target,mae_vm_pu,bvr_percent,source
+GCN,power_flow,case14,0.0128,0.00,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+GAT,power_flow,case14,0.0164,12.64,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+GPS,power_flow,case14,0.0266,0.00,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+GNS,power_flow,case14,0.0158,10.91,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+GNS-kit,power_flow,case14,0.0195,0.30,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+MxGPS-ind,power_flow,case14,0.0383,0.00,"MxGPS paper (arXiv:2607.13763v2) Table IV"
+MxGPS-cross,power_flow,case14,0.0350,0.00,"MxGPS paper (arXiv:2607.13763v2) Table IV"

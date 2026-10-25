@@ -1,0 +1,22 @@
+{
+  "ckpt_id": "case118_ieee__small__seed0",
+  "target": "case118_ieee",
+  "passed": true,
+  "n_test_scenarios": 2002,
+  "checks": [
+    {
+      "metric": "active residual (MW)",
+      "measured": 0.0729917362332344,
+      "shipped_metrics_csv": 0.1254603266716003,
+      "readme_expected": 0.125,
+      "within_tolerance": true
+    },
+    {
+      "metric": "reactive residual (MVar)",
+      "measured": 0.010609284043312,
+      "shipped_metrics_csv": 0.0136290965601801,
+      "readme_expected": 0.014,
+      "within_tolerance": true
+    }
+  ]
+}
